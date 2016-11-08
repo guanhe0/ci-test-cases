@@ -84,7 +84,7 @@ check_return "php-create-db"
 # PHP Create MySQL table.
 curl -o "${OUTPUT}/create-table" "http://localhost/create-table.php"
 grep "Table MyGuests created successfully" "${OUTPUT}/create-table"
-check_return "php-create-table"
+check_return "php-create-table99"
 
 # PHP add record to MySQL table.
 curl -o "${OUTPUT}/add-record" "http://localhost/add-record.php"
