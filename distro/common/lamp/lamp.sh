@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 pushd ../utils
 source ./sys_info.sh
