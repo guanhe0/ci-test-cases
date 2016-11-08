@@ -1,5 +1,9 @@
 #!/bin/sh
 
+pushd ./utils
+source ./sys_info.sh
+popd
+
 . ../lib/sh-test-lib
 OUTPUT="$(pwd)/output"
 RESULT_FILE="${OUTPUT}/result.txt"

@@ -38,7 +38,7 @@ exit_on_fail() {
 
     if [ "${exit_code}" -ne 0 ]; then
         echo "${test} fail" | tee -a "${RESULT_FILE}"
-
+        print_info 1 ${test}
         # skip_list is a list of tests sepereated by space. This might be
         # useful when exiting on prerequisite not met.
         if [ -n "${skip_list}" ]; then
@@ -52,6 +52,7 @@ exit_on_fail() {
         exit 0
     else
         echo "${test} pass" | tee -a "${RESULT_FILE}"
+		print_info 0 ${test}
         return 0
     fi
 }
@@ -63,9 +64,11 @@ check_return() {
 
     if [ "${exit_code}" -ne 0 ]; then
         echo "${test} fail" | tee -a "${RESULT_FILE}"
+		print_info 1 ${test}
         return "${exit_code}"
     else
         echo "${test} pass" | tee -a "${RESULT_FILE}"
+		print_info 0 ${test}
         return 0
     fi
 }
