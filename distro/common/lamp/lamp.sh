@@ -79,12 +79,12 @@ exit_on_fail "php-connect-db"
 # PHP Create a MySQL Database.
 curl -o "${OUTPUT}/create-db" "http://localhost/create-db.php"
 grep "Database created successfully" "${OUTPUT}/create-db"
-check_return "php-create-db"
+check_return "php-create-db99"
 
 # PHP Create MySQL table.
 curl -o "${OUTPUT}/create-table" "http://localhost/create-table.php"
 grep "Table MyGuests created successfully" "${OUTPUT}/create-table"
-check_return "php-create-table99"
+check_return "php-create-table"
 
 # PHP add record to MySQL table.
 curl -o "${OUTPUT}/add-record" "http://localhost/add-record.php"
