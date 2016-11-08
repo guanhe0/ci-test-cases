@@ -1,6 +1,6 @@
 #!/bin/sh
 
-pushd ./utils
+pushd ../utils
 source ./sys_info.sh
 popd
 
