@@ -214,7 +214,7 @@ EOF
         echo "lxc.aa_allow_incomplete = 1"  >> /var/lib/lxc/${distro_name}/config
         /etc/init.d/apparmor reload
         /etc/init.d/apparmor start
-        debian_brctl
+       # debian_brctl
         ;;
 esac
 
