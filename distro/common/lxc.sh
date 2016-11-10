@@ -110,7 +110,7 @@ brctl_config()
             ;;
         debian)
             echo "debian brctl ############"
-            debian_brctl $bridge
+           # debian_brctl $bridge
             ;;
         *)
             common_brctl $NETWORK_SCRIPTS_DIR $config_name
