@@ -61,7 +61,7 @@ mysql_version=$(mysql --version | awk '{ print $1"-" $2 ": " $3}')
 exists=$(echo $mysql_version|awk -F":" '{print $1}')
 if [ "$exists"x = "mysql-Ver"x ]; then
     mysql_exist=1;
-fi    
+fi
 
 case $distro in
     "centos" )
@@ -117,9 +117,9 @@ if [ $? -ne 0 ]; then
     cd $sysbench_dir
     ./autogen.sh
     ./configure --without-mysql
-    make 
+    make
     make install
-    popd 
+    popd
     sysbench --test=cpu help
     if [$? -ne 0 ]; then
     echo "sysbench has not been installed success"
@@ -159,7 +159,7 @@ expect eof
 EOF
 print_info $? prepare_test_database
 
-if [ $max_requests -eq 0 ]; then 
+if [ $max_requests -eq 0 ]; then
     max_requests=100000
 fi
 set -x

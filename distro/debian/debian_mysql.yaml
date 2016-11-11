@@ -28,7 +28,8 @@ install:
         - wget
 params:
     VERSION: ''
-       
+
+
 run:
     steps:
         - "cd ./distro/common; ./sysbench.sh; cd -"

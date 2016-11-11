@@ -74,4 +74,4 @@ expect "smb: \>"
 send "exit\n"
 expect eof
 EOF
-deluser $USER 
+deluser $USER
