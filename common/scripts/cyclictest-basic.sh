@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 TIMES=$1
 INTERVAL=$2
