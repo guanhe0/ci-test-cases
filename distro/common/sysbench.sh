@@ -114,7 +114,12 @@ if [ $? -ne 0 ]; then
     echo 'sysbench has not been installed success'
     pushd ~
     git clone $sysbench_git_url
+	if [ -e $sysbench_dir ]; then
     cd $sysbench_dir
+    else
+    echo 'git get sysbench resource code fail'
+	exit 1
+	fi
     ./autogen.sh
     ./configure --without-mysql
     make
