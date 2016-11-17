@@ -67,10 +67,10 @@ EOF
 
 /etc/init.d/smbd restart
 if [ $? -ne 0 ];then
-    printf_info 1 smbd_restart
+    print_info 1 smbd_restart
     exit 0
 else
-    printf_info 0 smbd_restart
+    print_info 0 smbd_restart
 fi
 
 /usr/bin/expect <<EOF
