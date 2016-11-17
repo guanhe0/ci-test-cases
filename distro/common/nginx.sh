@@ -9,6 +9,12 @@ set -x
 case $distro in
 	"debian" | "ubuntu" )
 	nginx_conf="/etc/nginx/sites-available/default"
+	sudo --help
+	if [ $? -ne 0 ];then
+		print_info  1 sudo_command_not_found
+		echo "sudo command not found"
+		$install_commands sudo
+    fi
 	sudo apt-get install -y nginx
 	if [ $? -ne 0 ]; then
 	sudo mv /var/lib/dpkg/info /var/lib/dpkg/info.bak
@@ -27,14 +33,15 @@ case $distro in
 	;;
 esac
 
-sudo service nginx start
-if [ $? -ne 0 ]; then
+#sudo service nginx start
 	sed -i "/ipv6only=on/d" $nginx_conf
-	sed "s/listen 80 default_server/listen $nginx_port default_server/g"
-fi
+	sed -i "s/listen 80 default_server/listen $nginx_port default_server/g" $nginx_conf
+	sed -i "s/listen [::]:80/listen [::]:$nginx_port/g" $nginx_conf
+
 sudo service nginx restart
 ip=$(ip addr show `ip route | grep "default" | awk '{print $NF}'`| grep -o "inet [0-9\.]*" | cut -d" " -f 2)
-wget http://$ip:$nginx_port/index.html
+index=$(ls /var/www/html)
+wget http://$ip:$nginx_port/${index}
 if [ $? -eq 0 ]; then
 	echo "nginx install success"
 	print_info 0 install_nginx
