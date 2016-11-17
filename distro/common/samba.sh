@@ -50,6 +50,10 @@ if [ ! -d /opt/$NEW_DIR ];then
 mkdir /opt/$NEW_DIR
 fi
 
+grep "[share]" $CONF_FILE
+if [ $? -eq 0 ];then
+    sed -i '/\[share\]/,$d' $CONF_FILE
+fi
 cat<<EOF>>$CONF_FILE
 [share]
 comment = /root
@@ -59,6 +63,7 @@ path = /opt/$NEW_DIR
 browseable = yes
 public = yes
 EOF
+
 
 /etc/init.d/smbd restart
 if [ $? -ne 0 ];then
@@ -70,6 +75,8 @@ fi
 
 /usr/bin/expect <<EOF
 spawn smbclient //127.0.0.1/$NEW_DIR
+expect "password"
+send "${PASSWD}\n"
 expect "smb: \>"
 send "exit\n"
 expect eof
