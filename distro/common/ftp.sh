@@ -114,21 +114,21 @@ expect {
 send "quit\r"
 expect eof
 EOF
-
+echo "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
 if [ $(find . -name "$FTP_GET_LOG")x != ""x ]; then
     lava-test-case vsftpd-download --result pass
 else
     lava-test-case vsftpd-download --result fail
 fi
-
+echo "&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&"
 popd
 
 cd ~
-
+echo "%%%%%%%%%%%%%%%%%%%%%%%"
 if [ $(find . -name 'ftp_put_test.log')x != ""x ]; then
     lava-test-case vsftpd-upload --result pass
 else
     lava-test-case vsftpd-upload --result fail
 fi
-
+echo "%%%%%%%%%%%%%%%%%%%%%%%%"
 rm -rf tmp
