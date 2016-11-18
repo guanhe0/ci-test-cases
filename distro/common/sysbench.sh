@@ -31,7 +31,7 @@ db_driver=mysql
 : ${mysql_user:=$1}
 : ${mysql_user:=root}
 : ${mysql_password:=$2}
-: ${mysql_password:=}
+: ${mysql_password:=root}
 : ${mysql_table_engine:=$3}
 : ${mysql_table_engine:=innodb}
 : ${oltp_table_size:=$4}
@@ -48,6 +48,7 @@ db_driver=mysql
 : ${db_name:=sbtest}
 #: ${max_requests:=$10}
 : ${max_requests:=100000}
+
 test_name="oltp"
 echo "max_requests are $max_requests"
 
@@ -184,7 +185,10 @@ sys_str="sysbench \
 "
 
 # prepare the test data
+echo "################################"
 $sys_str  prepare
+echo "################################"
+
 if [ $? -ne 0 ]; then
     echo "Prepare the oltp test data failed"
     print_info 1 prepare_oltp_data
@@ -195,7 +199,9 @@ else
 fi
 
 # do the oltp test
+echo "$$$$$$$$$$$$$$$$$$$$$$$$$$$"
 $sys_str run
+echo "$$$$$$$$$$$$$$$$$$$$$$$$$$$"
 if [ $? -ne 0 ]; then
     echo "Run the oltp test failed"
     print_info 1 run_oltp_test
@@ -206,7 +212,9 @@ else
 fi
 
 # cleanup the test data
+echo "&&&&&&&&&&&&&&&&&&&&&&&&"
 $sys_str  cleanup
+echo "&&&&&&&&&&&&&&&&&&&&&&&&"
 if [ $? -ne 0 ]; then
     echo "cleanup the test data failed"
     print_info 1 cleanup_oltp_test
